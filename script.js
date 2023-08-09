@@ -43,7 +43,8 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     const currentWord = document.querySelector('.word.current');
 
     const currentLetter = document.querySelector('.letter.current');
-    const expected = currentLetter.innerHTML;
+    //if there is no current letter then its going to be a space so the exoected going to be a ' '
+    const expected = currentLetter?.innerHTML || ' ';
 
     // ..checking whether the typed button is a character not a space
     const isLetter = key.length === 1 && key !== ' ';
@@ -62,7 +63,16 @@ document.getElementById('game').addEventListener('keyup', ev =>{
 
             //moving the currentLetter class to the next letter
             removeClass(currentLetter,'current');
-            addClass(currentLetter.nextSibling, 'current');
+            if(currentLetter.nextSibling){
+                addClass(currentLetter.nextSibling, 'current');
+            }
+            
+        }else{
+            //if we getting a letter but ther is no current letter
+            const incorrectLetter = document.createElement('span');
+            incorrectLetter.innerHTML = key;
+            incorrectLetter.className = 'letter incorrect extrea';
+            currentWord.appendChild(incorrectLetter);
         }
     }
 
@@ -88,7 +98,21 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     }
 
 
-    //
+    //moving the cursor
+    const nextLetter = document.querySelector('.letter.current');
+    const nextWord = document.querySelector('.word.current');
+    const cursor = document.getElementById('cursor');
+
+    cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top + 'px';
+    cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']  + 'px';
+
+
+
+    // if(nextLetter){
+    //     cursor.style.left = nextLetter.getBoundingClientRect().left  + 'px';
+    // }else{
+    //     cursor.style.left = nextWord.getBoundingClientRect().right  + 'px';
+    // }
 })
 
 

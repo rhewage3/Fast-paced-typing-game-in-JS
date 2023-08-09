@@ -119,8 +119,8 @@ div.word {
     height: 1.4rem;
     background: var(--PrimaryColor);
     position: fixed;
-    top: 201px;
-    left: 87px;
+    top: 205px;
+    left: 85px;
     animation: blinks .3s infinite;
 }
 
