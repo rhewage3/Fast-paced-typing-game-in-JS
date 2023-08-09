@@ -1,55 +1,29 @@
-*{
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=Poppins:wght@200&family=Roboto+Mono:wght@300&family=Roboto:wght@300&display=swap');
+
+:root{
+    --bgColor: #333;
+    --textPrimary: #fff;
+    --textSecondary: #666;
+    --PrimaryColor: #fd4;
 }
 
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #1E0555;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bgColor);
+    color: var(--textPrimary);
 }
 
-body, .qupt-input {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+main{
+    width: 600px;
+    margin: 50px auto;
 }
 
-.container {
-    background-color: #f0db4f;
-    padding: 1rem;
-    border-radius: .5rem;
-    width: 700px;
-    max-width: 90%;
+h1{
+    color: var(--PrimaryColor);
 }
 
-.timer{
-    position: absolute;
-    top: 2rem;
-    font-size: 3rem;
-    color: #F0DB4F;
-    font-weight: bold;
-}
 
-.quote-display {
-    margin-bottom: 1rem;
-    margin-right: calc(1rem + 2px);
-    margin-left: calc(1rem + 2px);
-}
-
-.quote-input{
-    background-color: transparent;
-    border: 2px solid #A1922E;
-    outline: none;
-    width: 100%;
-    height: 8rem;
-    margin: auto;
-    resize: none;
-    padding: .5rem 1rem;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-}
-
-.quote-input:focus{
-    border-color: black;
+h1 svg {
+    width: 40px;
+    fill: var(--PrimaryColor);
 }
