@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=Poppins:wght@200&family=Roboto+Mono:wght@300&family=Roboto:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400&family=Poppins:wght@200&family=Roboto&family=Roboto+Mono&display=swap');
 :root{
     --bgColor: #333;
     --textPrimary: #fff;
@@ -58,10 +57,73 @@ div#game{
     line-height: 35px;
     height: 105px;
     overflow: hidden;
+    position: relative;
+}
+
+div#game:focus {
+    outline: 0;
+}
+
+#words{
+    filter: blur(5px);
+    color: var(--textSecondary);
+}
+
+#game:focus #words{
+    filter: blur(0);
+}
+
+#focus-error{
+    position: absolute;
+    inset: 0;
+    text-align: center;
+    padding-top: 35px;
+}
+
+#game:focus #focus-error{
+    display: none;
 }
 
 div.word {
     display: inline-block;
     font-family: 'Roboto Mono', monospace;
     padding: 0 5px;    
+}
+
+.letter.correct {
+    color: #fff;
+}
+
+.letter.incorrect {
+    color: #f55;
+}
+
+
+@keyframes blinks{
+    0%{
+        opacity: 1;
+    }
+
+    50%{
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+#cursor {
+    display: none;
+    width: 2px;
+    height: 1.4rem;
+    background: var(--PrimaryColor);
+    position: fixed;
+    top: 201px;
+    left: 87px;
+    animation: blinks .3s infinite;
+}
+
+#game:focus #cursor {
+    display: block;
 }
