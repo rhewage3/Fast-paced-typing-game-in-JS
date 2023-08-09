@@ -11,6 +11,7 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: var(--bgColor);
     color: var(--textPrimary);
+    font-size: 1.4rem;
 }
 
 main{
@@ -26,4 +27,26 @@ h1{
 h1 svg {
     width: 40px;
     fill: var(--PrimaryColor);
+}
+
+#header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#buttons{
+    text-align: right;
+}
+
+#info{
+    color: var(--PrimaryColor);
+}
+
+button{
+    background: rgba(255, 255, 255, .2);
+    border: 0;
+    color: rgba(255, 255, 255, .5);
+    padding: 5px 20px;
+    border-radius: 5px;;
+
 }
