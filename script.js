@@ -216,6 +216,10 @@ document.getElementById('game').addEventListener('keyup', ev =>{
 document.getElementById('newGameButton').addEventListener('click', function(){
     gameOver();
     newGame();
+    location.reload();
+
+    
+    
 });
 
 
