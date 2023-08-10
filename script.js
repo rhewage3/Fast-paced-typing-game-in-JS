@@ -41,6 +41,12 @@ function newGame(){
 
 }
 
+//gameover function
+function gameOver(){
+    clearInterval(window.timer);
+    addClass(document.getElementById('game'),'over');
+}
+
 //adding event listeners to keyboard pressing to check what letter is user pressing
 document.getElementById('game').addEventListener('keyup', ev =>{
     // console.log(ev);
@@ -60,6 +66,12 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     const isBackspace = key === 'Backspace';
     const isFirstLetter = currentLetter === currentWord.firstChild;
 
+
+    //if the game is over we stop the script tag and return none
+    if(document.querySelector('#game.over')){
+        return;
+    }
+
     //consoling the xpected and the current selected key
     console.log({key,expected});
 
@@ -75,6 +87,9 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             const mspassed = currentTime - window.gameStart;
             const sPassed = Math.round(mspassed /1000);
             const sLeft = (gameTime/1000) - sPassed;
+            if(sLeft <= 0){
+                gameOver();
+            }
             document.getElementById('info').innerHTML = sLeft  + '';
 
         }, 1000);

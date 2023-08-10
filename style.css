@@ -127,3 +127,19 @@ div.word {
 #game:focus #cursor {
     display: block;
 }
+
+
+
+/* if the game is over */
+#game.over #words{
+    opacity: .3;
+    filter: blur(0px);
+}
+/* when the game over we removing the cursor */
+#game.over:focus #cursor{
+    display: none;
+}
+
+#game.over #focus-error {
+    display: none;;
+}
