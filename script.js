@@ -127,6 +127,14 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     }
 
 
+    //moving lines slash words adter first round over
+    if(currentWord.getBoundingClientRect().top > 240){
+        const words = document.getElementById('words');
+        const margin = parseInt(words.style.marginTop || '0px');        //moving the line in the seond row
+        words.style.marginTop = (margin - 35)+'px';
+    }
+
+
     //moving the cursor
     const nextLetter = document.querySelector('.letter.current');
     const nextWord = document.querySelector('.word.current');
