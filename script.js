@@ -50,6 +50,9 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     const isLetter = key.length === 1 && key !== ' ';
     //checking whteher the typed key is a space
     const isSpace = key === ' ';
+    //checking whteher the typed key is a backspace
+    const isBackspace = key === 'Backspace';
+    const isFirstLetter = currentLetter === currentWord.firstChild;
 
     //consoling the xpected and the current selected key
     console.log({key,expected});
@@ -95,6 +98,32 @@ document.getElementById('game').addEventListener('keyup', ev =>{
           }
         //addding the current letter in the next word
         addClass(currentWord.nextSibling.firstChild, 'current');
+    }
+
+    //if the type button is backspace
+    if(isBackspace){
+        if(currentLetter && isFirstLetter){
+            //make prev word current, last letter current
+            removeClass(currentWord, 'current');
+            addClass(currentWord.previousSibling,'current');
+            removeClass(currentLetter, 'current');
+            addClass(currentWord.previousSibling.lastChild, 'current');
+            removeClass(currentWord.previousSibling.lastChild, 'incorrect');
+            removeClass(currentWord.previousSibling.lastChild,'correct');
+        }
+
+        if(currentLetter && !isFirstLetter){
+            //move back one letter, invaildate letter
+            removeClass(currentLetter, 'current');
+            addClass(currentLetter.previousSibling, 'current');
+            removeClass(currentLetter.previousSibling, 'incorrect');
+            removeClass(currentLetter.previousSibling, 'correct')
+        }
+        if(!currentLetter){
+            addClass(currentWord.lastChild, 'current');
+            removeClass(currentWord.lastChild, 'incorrect');
+            removeClass(currentWord.lastChild, 'correct');
+        }
     }
 
 
