@@ -37,14 +37,33 @@ function newGame(){
     }
   addClass(document.querySelector('.word'), 'current');
   addClass(document.querySelector('.letter'), 'current');
+  document.getElementById('info').innerHTML = (gameTime/1000) + ' ';
   window.timer = null;
 
 }
+
+//getting the score
+function getWpm() {
+    const words = [...document.querySelectorAll('.word')];
+    const lastTypedWord = document.querySelector('.word.current');
+    const lastTypedWordIndex = words.indexOf(lastTypedWord) + 1;
+    const typedWords = words.slice(0, lastTypedWordIndex);
+    const correctWords = typedWords.filter(word => {
+      const letters = [...word.children];
+      const incorrectLetters = letters.filter(letter => letter.className.includes('incorrect'));
+      const correctLetters = letters.filter(letter => letter.className.includes('correct'));
+      return incorrectLetters.length === 0 && correctLetters.length === letters.length;
+    });
+    return correctWords.length / gameTime * 60000;
+  }
 
 //gameover function
 function gameOver(){
     clearInterval(window.timer);
     addClass(document.getElementById('game'),'over');
+    document.getElementById('info').innerHTML = `Wpm: ${getWpm()}`;
+    const result = getWpm();
+    document.getElementById('info').innerHTML = `WPM: ${result}`;
 }
 
 //adding event listeners to keyboard pressing to check what letter is user pressing
@@ -89,6 +108,7 @@ document.getElementById('game').addEventListener('keyup', ev =>{
             const sLeft = (gameTime/1000) - sPassed;
             if(sLeft <= 0){
                 gameOver();
+                return;
             }
             document.getElementById('info').innerHTML = sLeft  + '';
 
@@ -190,6 +210,13 @@ document.getElementById('game').addEventListener('keyup', ev =>{
     //     cursor.style.left = nextWord.getBoundingClientRect().right  + 'px';
     // }
 })
+
+
+//newbutton
+document.getElementById('newGameButton').addEventListener('click', function(){
+    gameOver();
+    newGame();
+});
 
 
 
